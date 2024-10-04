@@ -1,0 +1,96 @@
+NewLineItemConfirm As screen:
+    Fill: =Color.White
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    Width: =Max(App.Width, App.DesignWidth)
+
+    NewItemConfirmTitleLabel As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =NewItemConfirmTitleLabel.BorderColor
+        Font: =App.Theme.Font
+        Height: =76
+        HoverBorderColor: =NewItemConfirmTitleLabel.BorderColor
+        HoverColor: =NewItemConfirmTitleLabel.Color
+        HoverFill: =NewItemConfirmTitleLabel.Fill
+        PressedBorderColor: =NewItemConfirmTitleLabel.BorderColor
+        PressedColor: =NewItemConfirmTitleLabel.Color
+        PressedFill: =NewItemConfirmTitleLabel.Fill
+        Size: =26
+        Text: |-
+            ="Your line item has been 
+            added."
+        Width: =410
+        X: =119
+        Y: =567
+        ZIndex: =2
+
+    NewItemConfirmTimer As timer:
+        AutoStart: =true
+        BorderColor: =App.Theme.Colors.Primary
+        Color: =App.Theme.Colors.PrimaryForeground
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Duration: =2000
+        Fill: =App.Theme.Colors.Primary
+        FocusedBorderColor: =NewItemConfirmTimer.BorderColor
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =App.Theme.Colors.PrimaryForeground
+        HoverFill: =App.Theme.Colors.Darker10
+        OnTimerEnd: =Navigate(NewLineItem,ScreenTransition.None)
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Text: |-
+            =Text(Time(0, 0, NewItemConfirmTimer.Value/1000), "hh:mm:ss")
+        Visible: =false
+        Width: =280
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+    NewItemConfirmBackground As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(62, 96, 170, 0)
+        FocusedBorderColor: =NewItemConfirmBackground.BorderColor
+        Height: =1136
+        OnSelect: =Navigate(NewLineItem,ScreenTransition.None)
+        Width: =640
+        ZIndex: =4
+
+    NewLineItemConfirmGroup As group:
+        Height: =5
+        Width: =5
+        X: =-219
+        Y: =-325
+        ZIndex: =8
+
+        NewLineItemConfirmCycle As circle:
+            BorderColor: =RGBA(0, 217, 86, 1)
+            BorderThickness: =4
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =NewLineItemConfirmCycle.BorderColor
+            FocusedBorderThickness: =0
+            Height: =122
+            Width: =122
+            X: =259
+            Y: =365
+            ZIndex: =6
+
+        NewLineItemConfirmIcon As icon.Check:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 217, 86, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            FocusedBorderColor: =NewLineItemConfirmIcon.BorderColor
+            FocusedBorderThickness: =0
+            Icon: =Icon.Check
+            X: =290
+            Y: =396
+            ZIndex: =7
+
