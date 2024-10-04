@@ -1,0 +1,493 @@
+EditExpense As screen:
+    Fill: =RGBA(237, 241, 244, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    Width: =Max(App.Width, App.DesignWidth)
+
+    EditExpenseHeaderBackground As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(249, 251, 253, 1)
+        FocusedBorderColor: =EditExpenseHeaderBackground.BorderColor
+        FocusedBorderThickness: =0
+        Height: =98
+        Width: =640
+        ZIndex: =1
+
+    EditExpenseGrayLine4 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(196, 220, 232, 1)
+        FocusedBorderColor: =EditExpenseGrayLine4.BorderColor
+        Height: =1
+        Width: =640
+        Y: =98
+        ZIndex: =3
+
+    EditExpenseTitleLabel1 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =EditExpenseTitleLabel1.BorderColor
+        Font: =App.Theme.Font
+        Height: =31
+        HoverBorderColor: =EditExpenseTitleLabel1.BorderColor
+        HoverColor: =EditExpenseTitleLabel1.Color
+        HoverFill: =EditExpenseTitleLabel1.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =EditExpenseTitleLabel1.BorderColor
+        PressedColor: =EditExpenseTitleLabel1.Color
+        PressedFill: =EditExpenseTitleLabel1.Fill
+        Size: =22
+        Text: ="Edit Expense Report"
+        Width: =278
+        X: =183
+        Y: =37
+        ZIndex: =4
+
+    EditExpenseAddIcon As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(4, 169, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =EditExpenseAddIcon.BorderColor
+        Font: =App.Theme.Font
+        Height: =18
+        HoverBorderColor: =EditExpenseAddIcon.BorderColor
+        HoverColor: =EditExpenseAddIcon.Color
+        HoverFill: =EditExpenseAddIcon.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =EditExpenseAddIcon.BorderColor
+        PressedColor: =EditExpenseAddIcon.Color
+        PressedFill: =EditExpenseAddIcon.Fill
+        Size: =28
+        Text: ="+"
+        Width: =28
+        X: =16
+        Y: =736
+        ZIndex: =6
+
+    EditExpenseAddLineItemLabel As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(4, 169, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =EditExpenseAddLineItemLabel.BorderColor
+        Font: =App.Theme.Font
+        Height: =25
+        HoverBorderColor: =EditExpenseAddLineItemLabel.BorderColor
+        HoverColor: =EditExpenseAddLineItemLabel.Color
+        HoverFill: =EditExpenseAddLineItemLabel.Fill
+        OnSelect: =Navigate(NewLineItem,ScreenTransition.None)
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =EditExpenseAddLineItemLabel.BorderColor
+        PressedColor: =EditExpenseAddLineItemLabel.Color
+        PressedFill: =EditExpenseAddLineItemLabel.Fill
+        Size: =16
+        Text: ="Add expense line item"
+        Width: =247
+        X: =45
+        Y: =734
+        ZIndex: =7
+
+    EditExpenseCancelButton_2 As button:
+        BorderColor: =RGBA(4, 169, 244, 1)
+        BorderThickness: =1
+        Color: =RGBA(4, 169, 244, 1)
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =EditExpenseCancelButton_2.BorderColor
+        FocusedBorderThickness: =1
+        Font: =App.Theme.Font
+        Height: =54
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =App.Theme.Colors.PrimaryForeground
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: =Back()
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =14
+        Text: ="CANCEL"
+        Width: =129
+        X: =15
+        Y: =812
+        ZIndex: =8
+
+    EditExpenseSaveButton_1 As button:
+        BorderColor: =RGBA(4, 169, 244, 1)
+        BorderThickness: =0
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(4, 169, 244, 1)
+        FocusedBorderColor: =EditExpenseSaveButton_1.BorderColor
+        FocusedBorderThickness: =0
+        Font: =App.Theme.Font
+        Height: =54
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =App.Theme.Colors.PrimaryForeground
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |-
+            =UpdateIf(Expenses2, ID = SelectedReport2.ID, 
+            {ApproverName: First(DataCardValue9_1.SelectedItems).Value, CostCenter: First(DataCardValue9_2.SelectedItems).Value, EndDate: DataCardValue29_1.SelectedDate,
+             StartDate: DataCardValue28_1.SelectedDate, Title: DataCardValue24_1.Text});
+            Set(SelectedReport2, LookUp(Expenses2, ID = SelectedReport2.ID));
+            Back()
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =14
+        Text: ="UPDATE"
+        Width: =129
+        X: =496
+        Y: =812
+        ZIndex: =9
+
+    EditExpenseDeleteButton_3 As button:
+        BorderColor: =RGBA(4, 169, 244, 1)
+        BorderThickness: =1
+        Color: =RGBA(4, 169, 244, 1)
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =EditExpenseDeleteButton_3.BorderColor
+        FocusedBorderThickness: =1
+        Font: =App.Theme.Font
+        Height: =54
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =App.Theme.Colors.PrimaryForeground
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: =Navigate(DeleteExpenseConfirm,ScreenTransition.None)
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =14
+        Text: ="DELETE EXPENSE REPORT"
+        Width: =269
+        X: =186
+        Y: =812
+        ZIndex: =10
+
+    EditExpenseBack As icon.ChevronLeft:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(4, 169, 244, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        FocusedBorderColor: =EditExpenseBack.BorderColor
+        FocusedBorderThickness: =0
+        Height: =52
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =29
+        X: =20
+        Y: =23
+        ZIndex: =11
+
+    DataCardKey28_1 As label:
+        AutoHeight: =true
+        Color: =RGBA(120, 144, 156, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =DataCardKey28_1.BorderColor
+        Font: =App.Theme.Font
+        Height: =15
+        HoverBorderColor: =DataCardKey28_1.BorderColor
+        HoverColor: =DataCardKey28_1.Color
+        HoverFill: =DataCardKey28_1.Fill
+        PressedBorderColor: =DataCardKey28_1.BorderColor
+        PressedColor: =DataCardKey28_1.Color
+        PressedFill: =DataCardKey28_1.Fill
+        Size: =12
+        Text: ="PERIOD - START DATE"
+        Width: =179
+        Wrap: =false
+        X: =15
+        Y: =138
+        ZIndex: =12
+
+    DataCardValue28_1 As datepicker:
+        BorderColor: =Color.White
+        CalendarHeaderFill: =App.Theme.Colors.Primary
+        Color: =RGBA(0, 0, 0, 1)
+        DefaultDate: =SelectedReport2.StartDate
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderColor: =DataCardValue28_1.BorderColor
+        FocusedBorderThickness: =2
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =DataCardValue28_1.BorderColor
+        HoverDateFill: =App.Theme.Colors.Lighter70
+        HoverFill: =DataCardValue28_1.Fill
+        IconBackground: =App.Theme.Colors.Primary
+        InputTextPlaceholder: =Text(Date(2001,12,31), DataCardValue28_1.Format, DataCardValue28_1.Language)
+        IsEditable: =true
+        PaddingBottom: =0
+        PaddingLeft: =20
+        PaddingRight: =0
+        PressedBorderColor: =DataCardValue28_1.BorderColor
+        PressedFill: =DataCardValue28_1.Fill
+        SelectedDateFill: =App.Theme.Colors.Primary
+        Size: =18
+        StartYear: =1899
+        Width: =228
+        X: =15
+        Y: =176
+        ZIndex: =13
+
+    DataCardKey29_1 As label:
+        AutoHeight: =true
+        Color: =RGBA(120, 144, 156, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =DataCardKey29_1.BorderColor
+        Font: =App.Theme.Font
+        Height: =15
+        HoverBorderColor: =DataCardKey29_1.BorderColor
+        HoverColor: =DataCardKey29_1.Color
+        HoverFill: =DataCardKey29_1.Fill
+        PressedBorderColor: =DataCardKey29_1.BorderColor
+        PressedColor: =DataCardKey29_1.Color
+        PressedFill: =DataCardKey29_1.Fill
+        Size: =12
+        Text: ="PERIOD - END DATE"
+        Width: =220
+        Wrap: =false
+        X: =325
+        Y: =138
+        ZIndex: =14
+
+    DataCardValue29_1 As datepicker:
+        BorderColor: =Color.White
+        CalendarHeaderFill: =App.Theme.Colors.Primary
+        Color: =RGBA(0, 0, 0, 1)
+        DefaultDate: =SelectedReport2.EndDate
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderColor: =DataCardValue29_1.BorderColor
+        FocusedBorderThickness: =2
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =DataCardValue29_1.BorderColor
+        HoverDateFill: =App.Theme.Colors.Lighter70
+        HoverFill: =DataCardValue29_1.Fill
+        IconBackground: =App.Theme.Colors.Primary
+        InputTextPlaceholder: =Text(Date(2001,12,31), DataCardValue29_1.Format, DataCardValue29_1.Language)
+        IsEditable: =true
+        PaddingBottom: =0
+        PaddingLeft: =20
+        PaddingRight: =0
+        PressedBorderColor: =DataCardValue29_1.BorderColor
+        PressedFill: =DataCardValue29_1.Fill
+        SelectedDateFill: =App.Theme.Colors.Primary
+        Size: =18
+        StartYear: =1899
+        Width: =228
+        X: =325
+        Y: =176
+        ZIndex: =15
+
+    DataCardKey24_1 As label:
+        AutoHeight: =true
+        Color: =App.Theme.Colors.Darker30
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =DataCardKey24_1.BorderColor
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =DataCardKey24_1.BorderColor
+        HoverColor: =DataCardKey24_1.Color
+        HoverFill: =DataCardKey24_1.Fill
+        PressedBorderColor: =DataCardKey24_1.BorderColor
+        PressedColor: =DataCardKey24_1.Color
+        PressedFill: =DataCardKey24_1.Fill
+        Size: =12
+        Text: ="REPORT TITLE"
+        Width: =114
+        Wrap: =false
+        X: =15
+        Y: =318
+        ZIndex: =16
+
+    DataCardValue24_1 As text:
+        BorderColor: =Color.White
+        BorderThickness: =0
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =SelectedReport2.Title
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.Edit 
+        FocusedBorderColor: =DataCardValue24_1.BorderColor
+        FocusedBorderThickness: =0
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(255,255,255,1)
+        MaxLength: =500 
+        PaddingLeft: =20
+        Size: =18
+        Width: =610
+        X: =15
+        Y: =355
+        ZIndex: =17
+
+    DataCardKey26_1 As label:
+        AutoHeight: =true
+        Color: =App.Theme.Colors.Darker30
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =DataCardKey26_1.BorderColor
+        Font: =App.Theme.Font
+        Height: =15
+        HoverBorderColor: =DataCardKey26_1.BorderColor
+        HoverColor: =DataCardKey26_1.Color
+        HoverFill: =DataCardKey26_1.Fill
+        PressedBorderColor: =DataCardKey26_1.BorderColor
+        PressedColor: =DataCardKey26_1.Color
+        PressedFill: =DataCardKey26_1.Fill
+        Size: =12
+        Text: ="APPROVER"
+        Width: =Parent.Width - 60
+        Wrap: =false
+        X: =15
+        Y: =463
+        ZIndex: =18
+
+    DataCardKey9_1 As label:
+        AutoHeight: =true
+        Color: =App.Theme.Colors.Darker30
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =DataCardKey9_1.BorderColor
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =DataCardKey9_1.BorderColor
+        HoverColor: =DataCardKey9_1.Color
+        HoverFill: =DataCardKey9_1.Fill
+        PressedBorderColor: =DataCardKey9_1.BorderColor
+        PressedColor: =DataCardKey9_1.Color
+        PressedFill: =DataCardKey9_1.Fill
+        Size: =13
+        Text: ="COST CENTER"
+        Width: =Parent.Width - 60
+        Wrap: =false
+        X: =15
+        Y: =612
+        ZIndex: =22
+
+    DataCardValue9_2 As combobox:
+        BorderColor: =Color.White
+        BorderThickness: =0
+        ChevronBackground: =RGBA(255, 255, 255, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronFill: =RGBA(4, 169, 244, 1)
+        ChevronHoverBackground: =RGBA(4, 169, 244, 1)
+        ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+        DefaultSelectedItems: =LookUp(CostCenters, SelectedReport2.CostCenter = Value)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Value"]
+        FocusedBorderColor: =DataCardValue9_2.BorderColor
+        FocusedBorderThickness: =0
+        Font: =App.Theme.Font
+        Height: =70
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(255, 255, 255, 1)
+        InputTextPlaceholder: =""
+        IsSearchable: =false
+        Items: =CostCenters
+        MoreItemsButtonColor: =DataCardValue9_2.ChevronBackground
+        PaddingLeft: =If(DataCardValue9_2.DisplayMode = DisplayMode.Edit, 5, 0)
+        PressedColor: =App.Theme.Colors.PrimaryForeground
+        PressedFill: =RGBA(4, 169, 244, 1)
+        SearchFields: =["Value"]
+        SearchItems: =[]
+        SelectionColor: =App.Theme.Colors.PrimaryForeground
+        SelectionFill: =RGBA(4, 169, 244, 1)
+        SelectionTagColor: =DataCardValue9_2.HoverColor
+        SelectionTagFill: =DataCardValue9_2.HoverFill
+        SelectMultiple: =false
+        Size: =18
+        Width: =610
+        X: =15
+        Y: =640
+        ZIndex: =23
+
+    DataCardValue9_1 As combobox:
+        BorderColor: =Color.White
+        BorderThickness: =0
+        ChevronBackground: =RGBA(255, 255, 255, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronFill: =RGBA(4, 169, 244, 1)
+        ChevronHoverBackground: =RGBA(255, 255, 255, 1)
+        ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+        Default: =First([SelectedReport2.ApproverName])
+        DefaultSelectedItems: =LookUp(Approvers, SelectedReport2.ApproverName = Value)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Value"]
+        DisplayMode: =DisplayMode.Edit 
+        FocusedBorderColor: =DataCardValue9_1.BorderColor
+        FocusedBorderThickness: =0
+        Font: =App.Theme.Font
+        Height: =70
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(255, 255, 255, 1)
+        InputTextPlaceholder: =""
+        Items: =Approvers
+        MoreItemsButtonColor: =DataCardValue9_1.ChevronBackground
+        PaddingLeft: =If(DataCardValue9_1.DisplayMode = DisplayMode.Edit, 5, 0)
+        PressedColor: =App.Theme.Colors.PrimaryForeground
+        PressedFill: =App.Theme.Colors.Darker30
+        Reset: =
+        SearchFields: =["Value"]
+        SearchItems: =Search(Approvers,DataCardValue9_1.SearchText,Value)
+        SelectionColor: =App.Theme.Colors.PrimaryForeground
+        SelectionFill: =RGBA(62, 96, 170, 1)
+        SelectionTagColor: =DataCardValue9_1.HoverColor
+        SelectionTagFill: =DataCardValue9_1.HoverFill
+        SelectMultiple: =false
+        Size: =21
+        Template: =ListItemTemplate.Person
+        Width: =610 
+        X: =16
+        Y: =492
+        ZIndex: =24
+
