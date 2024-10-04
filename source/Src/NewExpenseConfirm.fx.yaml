@@ -1,0 +1,96 @@
+NewExpenseConfirm As screen:
+    Fill: =Color.White
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    Width: =Max(App.Width, App.DesignWidth)
+
+    NewExpenseConfirmTitleLabel As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =NewExpenseConfirmTitleLabel.BorderColor
+        Font: =App.Theme.Font
+        Height: =76
+        HoverBorderColor: =NewExpenseConfirmTitleLabel.BorderColor
+        HoverColor: =NewExpenseConfirmTitleLabel.Color
+        HoverFill: =NewExpenseConfirmTitleLabel.Fill
+        PressedBorderColor: =NewExpenseConfirmTitleLabel.BorderColor
+        PressedColor: =NewExpenseConfirmTitleLabel.Color
+        PressedFill: =NewExpenseConfirmTitleLabel.Fill
+        Size: =26
+        Text: |-
+            ="Your report has been 
+            submitted."
+        Width: =364
+        X: =137
+        Y: =567
+        ZIndex: =2
+
+    NewExpenseConfirmTimer As timer:
+        AutoStart: =true
+        BorderColor: =App.Theme.Colors.Primary
+        Color: =App.Theme.Colors.PrimaryForeground
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Duration: =2000
+        Fill: =App.Theme.Colors.Primary
+        FocusedBorderColor: =NewExpenseConfirmTimer.BorderColor
+        Font: =App.Theme.Font
+        Height: =70
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =App.Theme.Colors.PrimaryForeground
+        HoverFill: =App.Theme.Colors.Darker10
+        OnTimerEnd: =Navigate('My Expenses',ScreenTransition.None)
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Text: |-
+            =Text(Time(0, 0, NewExpenseConfirmTimer.Value/1000), "hh:mm:ss")
+        Visible: =false
+        Width: =280
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+    NewExpenseConfirmBackground As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(62, 96, 170, 0)
+        FocusedBorderColor: =NewExpenseConfirmBackground.BorderColor
+        Height: =1136
+        OnSelect: =Navigate('My Expenses',ScreenTransition.None)
+        Width: =640
+        ZIndex: =4
+
+    NewExpenseConfirmGroup As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =7
+
+        NewExpenseConfirmCycle As circle:
+            BorderColor: =RGBA(0, 217, 86, 1)
+            BorderThickness: =4
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =NewExpenseConfirmCycle.BorderColor
+            FocusedBorderThickness: =0
+            Height: =122
+            Width: =122
+            X: =259
+            Y: =365
+            ZIndex: =5
+
+        NewExpenseConfirmIcon As icon.Check:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 217, 86, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            FocusedBorderColor: =NewExpenseConfirmIcon.BorderColor
+            FocusedBorderThickness: =0
+            Icon: =Icon.Check
+            X: =291
+            Y: =398
+            ZIndex: =6
+
