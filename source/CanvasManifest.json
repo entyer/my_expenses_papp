@@ -22,7 +22,7 @@
       "consistentreturnschemafortabularfunctions": true,
       "copyandmerge": true,
       "dataflowanalysisenabled": false,
-      "datatablev2control": false,
+      "datatablev2control": true,
       "dataverseactionsenabled": false,
       "delaycontrolrendering": false,
       "delayloadscreens": true,
